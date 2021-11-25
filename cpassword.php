@@ -1,16 +1,17 @@
 <?php
 error_reporting(0);
+//change password concept
 include('connection.php');
 session_start();
-$profile=$_SESSION['sid'];
-$sel=mysqli_query($con,"select password from users where email='$profile'; ");
+$profile=$_SESSION['sid'];//session
+$sel=mysqli_query($con,"select password from users where email='$profile'; ");//query
 $arr=mysqli_fetch_assoc($sel);
 if(isset($_POST['sub'])){
     $oldpass=$_POST['opass'];
     $newpass=$_POST['npass'];
     $conpass=$_POST['cpass'];
      
-    if($arr['password']==$oldpass){
+    if(password_verify($oldpass,$arr['password'])){
         if($newpass==$conpass){
             $a=mysqli_query($con,"update users set password='$newpass' where email='$profile'; ");
 

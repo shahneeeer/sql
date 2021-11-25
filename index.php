@@ -12,7 +12,8 @@ if(isset($_POST['sub'])){
         else{
             if(mysqli_num_rows($sel)>0){
                 while($arr=mysqli_fetch_assoc($sel)){
-                    if($arr['email']==$email && $arr['password']==$pass){
+                    if( password_verify($pass,$arr['password'])){
+                      $email=$arr['email'];
                        session_start();
                        $_SESSION['sid']=$email;
                        

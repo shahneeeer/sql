@@ -1,4 +1,5 @@
 <?php
+//reading tha data
 include('connection.php');
 session_start();
 $name=$_SESSION['sid'];

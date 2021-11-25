@@ -2,13 +2,13 @@
 error_reporting(0);
 include('connection.php');
 $error=$imgErr="";
-if(isset($_POST['sub'])){
-    $email=$_POST['email'];
+if(isset($_POST['sub'])){//validations
+    $email = $_POST['email'];
     $uname=$_POST['uname'];
     $name=$_POST['name'];
     $age=$_POST['age'];
-    $pass=$_POST['pass'];
-    $tmp=$_FILES['image']['tmp_name'];
+    $pass=password_hash($_POST['pass'],PASSWORD_DEFAULT);//password
+    $tmp=$_FILES['image']['tmp_name'];//File uploading
     $fname=$_FILES['image']['name'];
   
     if(empty($email) || empty($uname) || empty($name) || empty($age) || empty($pass)){
